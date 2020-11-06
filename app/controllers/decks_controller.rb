@@ -25,7 +25,13 @@ class DecksController < ApplicationController
     end
 
     def edit
-        @deck = Deck.where()
+        @deck = Deck.where(id: params[:id]).first
+        @user = current_user
+
+        @deck_card_names = @deck.cardnames.split("%")
+        @deck_card_images = @deck.imageurls.split(",")
+
+        
     end
 
     def addCardToDeck
